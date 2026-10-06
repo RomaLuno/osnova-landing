@@ -4,371 +4,535 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>ОСНОВА — тестовая версия</title>
+<title>ОС.НОВА — тестовая версия</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f5f2ec; --paper:#fffdf9; --ink:#1d2a2a; --muted:#5f6b69; --line:#c9c2b4;
-  --accent:#2f6b5e; --accent-2:#c4774a; --soft:#e7efe9; --soft-2:#f6e7dc;
-  --r:18px;
+  --cream:#f3f1ec; --paper:#fbfaf7; --ink:#0c0c16; --navy:#0b0a24; --navy-2:#141038;
+  --violet:#4b2dff; --lilac:#a99cff; --orange:#ff8a1e; --peach:#ffc58f;
+  --muted:#6b6a75; --muted-d:#a9a6c4; --line:#d9d6ce; --line-d:rgba(255,255,255,.14);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:400 17px/1.55 Manrope,system-ui,sans-serif;overflow-x:hidden}
+body{background:var(--cream);color:var(--ink);font:400 17px/1.5 "Inter Tight",system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
-.badge{position:fixed;right:12px;bottom:12px;z-index:50;background:var(--ink);color:#fff;font-size:12px;padding:6px 10px;border-radius:999px;opacity:.75}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+.badge{position:fixed;right:12px;bottom:12px;z-index:60;background:#000;color:#fff;font:500 11px "JetBrains Mono",monospace;padding:6px 10px;border-radius:999px;opacity:.7}
 
-/* header */
-header{padding:22px 0}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.logo{font:700 26px/1 Unbounded,sans-serif;letter-spacing:.06em}
-.logo small{display:block;font:500 11px/1.3 Manrope;letter-spacing:.02em;color:var(--muted);margin-top:6px;max-width:260px}
-.contacts{display:flex;gap:10px}
-.contacts a{text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+/* общие приёмы */
+.dark{background:var(--navy);color:#fff}
+.dark .muted,.dark .lead{color:var(--muted-d)}
+section{position:relative;overflow:hidden;padding:110px 0}
+.label{display:flex;align-items:center;gap:10px;font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--violet);box-shadow:0 0 10px var(--violet)}
+.dark .label{color:var(--muted-d)}
+h1,h2{font-weight:400;letter-spacing:-.025em;line-height:1.06}
+h1{font-size:clamp(36px,5.4vw,72px)}
+h2{font-size:clamp(30px,4vw,54px);margin-bottom:22px}
+.lead{font-size:clamp(17px,1.5vw,20px);color:var(--muted);max-width:620px;font-weight:300}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;padding:16px 26px;border-radius:999px;background:var(--violet);color:#fff;transition:.25s;box-shadow:0 10px 40px -10px rgba(75,45,255,.7)}
+.btn::after{content:"→"}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 50px -8px rgba(75,45,255,.9)}
+.btn.ghost{background:transparent;color:inherit;box-shadow:none;border:1px solid currentColor;opacity:.85}
+.btn.light{background:#fff;color:var(--ink);box-shadow:0 10px 40px -10px rgba(255,255,255,.4)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.mono{font-family:"JetBrains Mono",monospace}
 
-/* node primitives */
-.node{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:14px 18px;position:relative;z-index:2}
-.node.core{background:var(--ink);color:#fff;border-color:var(--ink);border-radius:999px;padding:16px 26px;font-weight:700;text-align:center}
-.node.accent{background:var(--soft);border-color:#a9c7bb}
-.node.warm{background:var(--soft-2);border-color:#e3bfa6}
-.pill{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-h1,h2{font-family:Unbounded,sans-serif;font-weight:700;line-height:1.15}
-h1{font-size:clamp(28px,4.4vw,50px)}
-h2{font-size:clamp(24px,3.2vw,36px);margin-bottom:14px}
-.lead{color:var(--muted);font-size:18px;max-width:640px}
-section{padding:70px 0}
-.btn{display:inline-block;text-decoration:none;font-weight:700;padding:15px 24px;border-radius:999px;background:var(--accent);color:#fff;border:2px solid var(--accent);transition:.2s}
-.btn:hover{transform:translateY(-2px)}
-.btn.ghost{background:transparent;color:var(--accent)}
-.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+/* светящиеся сферы */
+.orb{position:absolute;border-radius:50%;pointer-events:none;z-index:1;filter:blur(2px)}
+.orb.big{background:radial-gradient(circle at 38% 40%,rgba(255,255,255,.9) 0,rgba(169,156,255,.85) 14%,rgba(75,45,255,.85) 34%,rgba(255,138,30,.75) 62%,rgba(255,138,30,0) 72%);}
+.orb.soft{background:radial-gradient(circle,rgba(75,45,255,.55) 0,rgba(169,156,255,.35) 35%,rgba(255,197,143,.3) 55%,transparent 70%);filter:blur(30px)}
+.orb.warm{background:radial-gradient(circle,rgba(255,138,30,.6) 0,rgba(255,197,143,.35) 40%,transparent 70%);filter:blur(30px)}
+.glass{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18),rgba(255,255,255,.02) 60%);backdrop-filter:blur(2px);z-index:1;pointer-events:none}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,18px) scale(1.04)}}
+.orb,.glass{animation:drift 14s ease-in-out infinite}
 
-/* HERO */
-.hero{padding:30px 0 60px}
-.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
-.adv{display:flex;flex-direction:column;gap:10px;margin-top:26px}
-.adv .node{padding:10px 16px;font-weight:600;display:flex;align-items:center;gap:10px}
-.adv .node::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);flex:none}
-.map{position:relative;aspect-ratio:1/1;width:100%}
-.map svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}
-.map .n{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;background:var(--paper);border:1.5px solid var(--line);z-index:2}
-.map .n.c{background:var(--ink);color:#fff;border-color:var(--ink);font:700 16px Unbounded;padding:16px 22px}
-.map .n.l2{background:var(--soft);border-color:#a9c7bb}
-.map .n.l3{background:transparent;border:1px dashed var(--line);font-weight:500;color:var(--muted);font-size:12.5px}
-path.br{fill:none;stroke:var(--line);stroke-width:2}
-path.br.a{stroke:#8db3a5}
-path.br.d{stroke-dasharray:4 5;stroke-width:1.5}
+/* шапка */
+header{position:absolute;top:0;left:0;right:0;z-index:20;padding:26px 0;color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:500;font-size:24px;letter-spacing:.02em}
+.logo span{color:var(--lilac)}
+.logo small{display:block;font:400 10px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-d);margin-top:4px}
+.contacts{display:flex;gap:8px}
+.contacts a{text-decoration:none;font-size:14px;padding:9px 16px;border:1px solid var(--line-d);border-radius:999px;backdrop-filter:blur(8px);background:rgba(255,255,255,.04)}
 
-/* REQUESTS — radial-ish cloud */
-.req{display:grid;grid-template-columns:260px 1fr;gap:30px;align-items:center}
-.req-center{display:flex;justify-content:center}
-.req-list{display:flex;flex-wrap:wrap;gap:12px;position:relative}
-.req-list .node{padding:10px 16px;font-weight:600;font-size:15.5px;border-radius:999px}
-.req-list .node:nth-child(3n+1){background:var(--soft);border-color:#a9c7bb}
-.req-list .node:nth-child(4n+2){background:var(--soft-2);border-color:#e3bfa6}
+/* 1. HERO */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:140px 0 90px;background:radial-gradient(120% 90% at 85% 40%,#1b1450 0,var(--navy) 60%)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
+.hero-grid>*,.quiz>*,.two>*,.steps>*,.fgrid>*{min-width:0}
+h1,h2{overflow-wrap:break-word}
+.sys{font:400 12px/1.9 "JetBrains Mono",monospace;color:var(--muted-d);margin-bottom:28px}
+.sys b{color:var(--lilac);font-weight:500}
+.hero h1{max-width:760px}
+.hero .lead{margin-top:24px}
+.adv{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;max-width:760px;border-top:1px solid var(--line-d);padding-top:22px}
+.adv div{font-size:15px;color:#e7e5f5}
+.adv i{display:block;font:normal 500 13px "JetBrains Mono";color:var(--orange);margin-bottom:8px}
+#wave{position:absolute;left:0;right:0;bottom:0;width:100%;height:30%;z-index:1;opacity:.9}
+.hero-orb{position:relative;aspect-ratio:1;width:100%;max-width:480px;margin-left:auto}
+.hero-orb .orb.big{inset:6%;}
+.hero-orb svg{position:absolute;inset:-6%;width:112%;height:112%;z-index:2;overflow:visible}
 
-/* MECHANISM chain */
-.chain{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-top:30px}
-.chain .node{font-weight:700;padding:16px 20px}
-.chain .arr{width:44px;height:2px;background:var(--accent);position:relative;margin:0 4px}
-.chain .arr::after{content:"";position:absolute;right:-1px;top:-5px;border-left:9px solid var(--accent);border-top:6px solid transparent;border-bottom:6px solid transparent}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+/* 2. ЗАПРОСЫ — mind map / радар */
+.radar-wrap{display:grid;grid-template-columns:1fr;gap:20px}
+.radar{position:relative;width:100%;max-width:1040px;aspect-ratio:16/10;margin:10px auto 0}
+.radar svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.radar .ring{fill:none;stroke:#cfc9e8;stroke-width:1}
+.radar .spoke{stroke:#d9d4ee;stroke-width:1}
+.rnode{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;width:170px;font-size:14.5px;line-height:1.25;z-index:3}
+.rnode::before{content:"";width:11px;height:11px;border-radius:50%;background:var(--violet);box-shadow:0 0 0 5px rgba(75,45,255,.12),0 0 14px rgba(75,45,255,.6)}
+.rnode.o::before{background:var(--orange);box-shadow:0 0 0 5px rgba(255,138,30,.15),0 0 14px rgba(255,138,30,.7)}
+.rcore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;display:grid;place-items:center;text-align:center;font:500 13px/1.3 "JetBrains Mono";letter-spacing:.08em;color:#fff;text-shadow:0 1px 10px rgba(20,10,80,.9);z-index:3;background:radial-gradient(circle at 32% 28%,#fff 0,var(--lilac) 12%,var(--violet) 45%,#2a1a9e 80%);box-shadow:0 0 80px 10px rgba(75,45,255,.45)}
+.req-list{display:none}
 
-/* ROUTE — tree */
-.tree{position:relative;margin-top:36px;padding-left:44px}
-.tree::before{content:"";position:absolute;left:15px;top:10px;bottom:30px;width:2px;background:var(--line)}
-.step{position:relative;margin-bottom:18px}
-.step::before{content:"";position:absolute;left:-29px;top:26px;width:29px;height:2px;background:var(--line)}
-.step .num{position:absolute;left:-44px;top:12px;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px;z-index:3}
-.step .node{max-width:720px}
-.step b{display:block;font-size:18px;margin-bottom:4px}
-.step p{color:var(--muted)}
-.big{font:700 clamp(19px,2.2vw,25px)/1.35 Manrope;margin-top:34px;max-width:860px}
-.gsr{margin-top:18px;max-width:860px;color:var(--muted)}
+/* 3. МЕХАНИЗМ — A→B */
+.mech{background:var(--paper)}
+.ab{position:relative;margin:60px 0 50px;height:190px}
+.ab svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ab .pt{position:absolute;transform:translateX(-50%);text-align:center;width:180px;top:118px;font-size:16px;font-weight:500}
+.ab .pt small{display:block;font:400 11px "JetBrains Mono";letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:50px;max-width:1000px}
+.two p{color:var(--muted);font-size:17px}
 
-/* NUMBERS */
-.nums{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.num-card{padding:30px}
-.num-card .v{font:700 clamp(48px,7vw,80px)/1 Unbounded;color:var(--accent)}
-.num-card p{margin-top:10px;font-weight:600}
-.num-card small{display:block;color:var(--muted);margin-top:6px}
+/* 4. МАРШРУТ — 01-04 */
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:0 60px;margin-top:50px}
+.step{display:grid;grid-template-columns:80px 1fr;gap:18px;padding:30px 0;border-top:1px solid var(--line-d)}
+.step .n{font-size:46px;font-weight:300;line-height:1;color:var(--lilac)}
+.step:nth-child(even) .n{color:var(--orange)}
+.step h3{font-weight:500;font-size:20px;margin-bottom:8px}
+.step p{color:var(--muted-d);font-size:15.5px}
+.statement{font-size:clamp(24px,3vw,38px);font-weight:300;letter-spacing:-.02em;line-height:1.2;max-width:900px;margin-top:70px}
+.statement em{font-style:normal;background:linear-gradient(90deg,var(--lilac),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gsr{display:flex;gap:16px;align-items:flex-start;margin-top:34px;max-width:760px;padding:22px 24px;border:1px solid var(--line-d);border-radius:16px;background:rgba(255,255,255,.03);color:var(--muted-d);font-size:15px}
+.gsr b{color:#fff;font-weight:500}
 
-/* DIFF */
-.diff{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
-.diff .node{padding:22px}
-.diff b{display:block;font-size:18px;margin-bottom:8px}
-.diff p{color:var(--muted);font-size:15.5px}
+/* 5. ЦИФРЫ */
+.nums{display:grid;grid-template-columns:1fr auto 1fr;gap:40px;align-items:end}
+.num .v{font-size:clamp(90px,13vw,190px);font-weight:300;line-height:.9;letter-spacing:-.05em;color:var(--violet)}
+.num.o .v{color:var(--orange)}
+.num p{margin-top:16px;font-size:17px;max-width:360px}
+.num small{display:block;margin-top:8px;color:var(--muted);font:400 11px "JetBrains Mono";letter-spacing:.06em}
+.plus{font-size:80px;font-weight:200;color:var(--muted);padding-bottom:60px}
 
-/* FORMATS — branching from core */
-.formats{position:relative;margin-top:40px}
-.formats .root{display:flex;justify-content:center;margin-bottom:34px}
-.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
-.fgrid::before{content:"";position:absolute;left:12.5%;right:12.5%;top:-18px;height:2px;background:var(--line)}
-.fcard{display:flex;flex-direction:column;padding:22px}
-.fcard::before{content:"";position:absolute;left:50%;top:-20px;width:2px;height:20px;background:var(--line)}
-.formats .root .node::after{content:"";position:absolute;left:50%;bottom:-36px;width:2px;height:34px;background:var(--line)}
-.fcard h3{font-size:19px;margin-bottom:6px}
-.fcard .sub{font-weight:600;margin-bottom:10px}
-.fcard p{color:var(--muted);font-size:15px;flex:1}
-.fcard .price{font:700 26px Unbounded;margin:16px 0 14px}
-.fcard .btn{padding:12px 18px;font-size:15px;text-align:center}
+/* 6. ОТЛИЧИЯ — пересекающиеся сферы */
+.diff{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:50px}
+.dcard{position:relative;padding-top:130px}
+.dcard .c{position:absolute;top:0;left:0;width:110px;height:110px;border-radius:50%;border:1px solid #c9c2ef;background:radial-gradient(circle at 35% 35%,#fff 0,rgba(169,156,255,.45) 45%,rgba(75,45,255,.15) 70%)}
+.dcard .c::after{content:"";position:absolute;left:44px;top:0;width:110px;height:110px;border-radius:50%;border:1px solid #f1c9a6;background:radial-gradient(circle at 60% 40%,rgba(255,197,143,.5),rgba(255,138,30,.1) 70%);mix-blend-mode:multiply}
+.dcard h3{font-weight:500;font-size:21px;margin-bottom:10px}
+.dcard p{color:var(--muted);font-size:16px}
 
-/* QUIZ + RESULTS + FINAL */
-.quiz{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center;padding:40px}
-.results{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
-.results .node{min-height:140px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);border-style:dashed}
-.final{background:var(--ink);color:#fff;border-radius:28px;padding:56px 40px;text-align:center}
-.final .lead{color:#c8d3d0;margin:0 auto}
-.final .ctas{justify-content:center}
-.final .btn.ghost{color:#fff;border-color:#fff}
-.final .app{margin-top:18px;font-size:13px;color:#9aa9a6}
-footer{padding:30px 0 50px;color:var(--muted);font-size:13px;text-align:center}
+/* 7. ФОРМАТЫ — ветки от ядра */
+.formats{background:radial-gradient(90% 70% at 50% 0,#1d1656 0,var(--navy) 65%)}
+.tree{position:relative;margin-top:30px}
+.tree svg{position:absolute;left:0;top:0;width:100%;height:110px;overflow:visible}
+.tree-core{position:relative;margin:0 auto;width:max-content;padding:13px 24px;border-radius:999px;font:500 12px "JetBrains Mono";letter-spacing:.12em;text-transform:uppercase;background:rgba(75,45,255,.25);border:1px solid rgba(169,156,255,.5);box-shadow:0 0 40px rgba(75,45,255,.5);z-index:2}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:80px}
+.fcard{position:relative;display:flex;flex-direction:column;padding:28px 24px;border-radius:22px;border:1px solid var(--line-d);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));backdrop-filter:blur(10px)}
+.fcard::before{content:"";position:absolute;top:-6px;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:var(--lilac);box-shadow:0 0 14px var(--lilac)}
+.fcard.o::before{background:var(--orange);box-shadow:0 0 14px var(--orange)}
+.fcard .tag{font:500 11px "JetBrains Mono";letter-spacing:.12em;text-transform:uppercase;color:var(--muted-d);margin-bottom:16px}
+.fcard h3{font-weight:500;font-size:22px;margin-bottom:8px}
+.fcard .sub{color:#e9e6ff;font-size:15.5px;margin-bottom:14px}
+.fcard p{color:var(--muted-d);font-size:14.5px;flex:1}
+.fcard .price{font-size:34px;font-weight:300;letter-spacing:-.02em;margin:22px 0 18px}
+.fcard .price.none{font-size:15px;color:var(--muted-d);font-family:"JetBrains Mono"}
+.fcard .btn{justify-content:center;padding:14px 18px;font-size:15px}
+.fcard.premium{border-color:rgba(255,138,30,.45);background:linear-gradient(180deg,rgba(255,138,30,.14),rgba(255,255,255,.02))}
 
-@media (max-width:900px){
-  .hero-grid,.req,.quiz,.two,.nums{grid-template-columns:1fr}
-  .diff,.results{grid-template-columns:1fr}
+/* 8. КВИЗ */
+.quiz{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.quiz .cards{position:relative;height:330px}
+.qc{position:absolute;width:220px;padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px -20px rgba(20,16,56,.25);font-size:15px}
+.qc small{display:block;font:500 10px "JetBrains Mono";letter-spacing:.1em;color:var(--violet);margin-bottom:8px}
+.qc:nth-child(1){left:0;top:0;transform:rotate(-4deg)}
+.qc:nth-child(2){left:16%;top:105px;transform:rotate(2deg);z-index:2}
+.qc:nth-child(3){left:32%;top:210px;transform:rotate(-2deg);z-index:3}
+
+/* 9. РЕЗУЛЬТАТЫ */
+.results{background:var(--paper)}
+.timeline{position:relative;height:150px;margin:50px 0 30px}
+.timeline svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.tl{position:absolute;top:0;transform:translateX(-50%);text-align:center;width:200px}
+.tl b{display:block;font-size:44px;font-weight:300;color:var(--violet)}
+.tl.o b{color:var(--orange)}
+.tl span{display:block;margin-top:70px;font-size:14px;color:var(--muted)}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rcard{min-height:150px;border:1px dashed #c9c4d8;border-radius:18px;display:grid;place-items:center;text-align:center;padding:20px;color:var(--muted);font:400 13px "JetBrains Mono"}
+
+/* 10. ФИНАЛ */
+.final{min-height:90vh;display:flex;align-items:center;background:var(--navy)}
+.final .lead{margin-top:20px}
+.final .app{margin-top:30px;font:400 12px "JetBrains Mono";color:var(--muted-d);letter-spacing:.06em}
+footer{background:var(--navy);color:var(--muted-d);font:400 11px "JetBrains Mono";letter-spacing:.06em;text-align:center;padding:0 20px 40px}
+
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-orb{max-width:340px;margin:0 auto;order:-1}
+  .steps,.two,.quiz{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr 1fr}
-  .fgrid::before,.fcard::before,.formats .root .node::after{display:none}
-  .map{max-width:520px;margin:0 auto}
+  .tree svg{display:none}
+  .fgrid{margin-top:30px}
+  .nums{grid-template-columns:1fr}
+  .plus{padding:0;line-height:1}
+  .radar{display:none}
+  .req-list{display:flex;flex-direction:column;gap:0;margin-top:10px}
+  .req-list div{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);font-size:16.5px}
+  .req-list div::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--violet);box-shadow:0 0 10px var(--violet)}
+  .req-list div:nth-child(3n)::before{background:var(--orange);box-shadow:0 0 10px var(--orange)}
 }
-@media (max-width:560px){
+@media (max-width:620px){
   body{font-size:16px}
-  section{padding:50px 0}
+  section{padding:80px 0}
   .wrap{padding:0 16px}
-  .fgrid{grid-template-columns:1fr}
-  .map .n{font-size:11.5px;padding:6px 10px}
-  .map .n.c{font-size:13px;padding:11px 15px}
-  .map .n.l3{display:none}
-  .chain{flex-direction:column;align-items:stretch}
-  .chain .arr{width:2px;height:26px;margin:2px auto}
-  .chain .arr::after{right:-5px;top:auto;bottom:-1px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:9px solid var(--accent);border-bottom:0}
-  .quiz,.final{padding:30px 20px}
+  .contacts a:first-child{display:none}
+  .adv{grid-template-columns:1fr;gap:12px}
+  .fgrid,.diff,.rgrid{grid-template-columns:1fr}
+  .ab{height:auto;margin:40px 0}
+  .ab svg{display:none}
+  .ab .pt{position:static;transform:none;width:auto;text-align:left;padding:14px 0 14px 26px;border-left:2px solid var(--violet);margin-left:6px}
+  .timeline{display:none}
+  .quiz .cards{height:260px}
+  .qc{width:190px}
 }
+/* анимации */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+#glow{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;z-index:4;background:radial-gradient(circle,rgba(120,95,255,.16) 0,rgba(255,138,30,.06) 40%,transparent 65%);opacity:0;transition:opacity .4s;will-change:transform}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 5px rgba(75,45,255,.12),0 0 14px rgba(75,45,255,.6)}50%{box-shadow:0 0 0 10px rgba(75,45,255,.05),0 0 22px rgba(75,45,255,.9)}}
+.rnode::before{animation:pulse 3s ease-in-out infinite}
+.rnode:nth-child(odd)::before{animation-delay:1.5s}
+.rnode{transition:color .3s}
+.rnode:hover{color:var(--violet)}
+.fcard{transition:transform .4s,border-color .4s}
+.fcard:hover{transform:translateY(-6px);border-color:rgba(169,156,255,.5)}
+.btn{will-change:transform}
+@media (hover:none){#glow{display:none}}
+@media (prefers-reduced-motion:reduce){.orb,.glass,.rnode::before{animation:none}.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
-<div class="badge">тестовая версия · черновик</div>
+<div class="badge">ТЕСТОВАЯ ВЕРСИЯ</div>
 
 <header>
   <div class="wrap">
-    <div class="logo">ОСНОВА<small>Новая операционная система человека. Психологическое сопровождение для предпринимателей</small></div>
+    <div class="logo">ОС<span>.</span>НОВА<small>операционная система человека</small></div>
     <div class="contacts"><a href="#start">Телефон</a><a href="#start">Telegram</a></div>
   </div>
 </header>
 
 <!-- 1. HERO -->
-<section class="hero">
+<section class="hero dark">
+  <canvas id="wave"></canvas>
+  <div class="orb soft" style="width:700px;height:700px;right:-200px;top:-150px"></div>
   <div class="wrap hero-grid">
     <div>
-      <h1>Убираем внутренние причины, которые ограничивают бизнес, доход и качество жизни</h1>
-      <p class="lead" style="margin-top:18px">Диагностируем ключевые сферы, находим психологический механизм проблемы и подбираем точечную работу до изменений в реальной жизни.</p>
+      <div class="sys">&gt; system access ........ <b>granted</b><br>&gt; психологическое сопровождение для предпринимателей</div>
+      <h1>Убираем внутренние причины, которые ограничивают бизнес, доход и&nbsp;качество жизни</h1>
+      <p class="lead">Диагностируем ключевые сферы, находим психологический механизм проблемы и подбираем точечную работу до изменений в реальной жизни.</p>
       <div class="adv">
-        <div class="node">Точечная работа вместо бесконечной терапии</div>
-        <div class="node">Индивидуальный mindmap и понятный маршрут</div>
-        <div class="node">Изменения уже после 1-й сессии</div>
+        <div><i>01</i>Точечная работа вместо бесконечной терапии</div>
+        <div><i>02</i>Индивидуальный mindmap и понятный маршрут</div>
+        <div><i>03</i>Изменения уже после 1-й сессии</div>
       </div>
       <div class="ctas">
         <a class="btn" href="#start">Разобрать мою ситуацию</a>
         <a class="btn ghost" href="#route">Узнать, как работает Основа</a>
       </div>
     </div>
-
-    <div class="map" aria-label="Пример mindmap">
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-        <path class="br a" d="M50 50 C 40 40, 30 25, 22 18"/>
-        <path class="br a" d="M50 50 C 60 40, 70 25, 78 18"/>
-        <path class="br a" d="M50 50 C 35 50, 22 48, 12 50"/>
-        <path class="br a" d="M50 50 C 65 50, 78 52, 88 50"/>
-        <path class="br a" d="M50 50 C 40 60, 30 74, 22 82"/>
-        <path class="br a" d="M50 50 C 60 60, 70 74, 78 82"/>
-        <path class="br d" d="M22 18 C 18 12, 12 9, 8 7"/>
-        <path class="br d" d="M78 18 C 84 12, 90 10, 93 7"/>
-        <path class="br d" d="M22 82 C 18 88, 14 91, 9 93"/>
-        <path class="br d" d="M78 82 C 82 88, 88 91, 92 93"/>
-        <path class="br d" d="M12 50 C 10 40, 9 36, 8 32"/>
-        <path class="br d" d="M88 50 C 90 60, 91 64, 92 68"/>
+    <div class="hero-orb">
+      <div class="orb big"></div>
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(255,255,255,.18)" stroke-width=".25"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,.14)" stroke-width=".25" stroke-dasharray="1 1.5"/>
+        <ellipse cx="50" cy="50" rx="49" ry="16" fill="none" stroke="rgba(255,197,143,.35)" stroke-width=".25" transform="rotate(-24 50 50)"/>
+        <circle cx="5.5" cy="70" r="1.2" fill="#ffc58f"/><circle cx="94" cy="30" r="1.2" fill="#a99cff"/>
+        <circle cx="50" cy="1" r="1" fill="#fff"/>
       </svg>
-      <div class="n c" style="left:50%;top:50%">ВЫ</div>
-      <div class="n l2" style="left:22%;top:18%">Бизнес</div>
-      <div class="n l2" style="left:78%;top:18%">Деньги</div>
-      <div class="n l2" style="left:12%;top:50%">Решения</div>
-      <div class="n l2" style="left:88%;top:50%">Отношения</div>
-      <div class="n l2" style="left:22%;top:82%">Энергия</div>
-      <div class="n l2" style="left:78%;top:82%">Смысл</div>
-      <div class="n l3" style="left:12%;top:6%">потолок дохода</div>
-      <div class="n l3" style="left:86%;top:6%">страх кризиса</div>
-      <div class="n l3" style="left:11%;top:30%">откладывание</div>
-      <div class="n l3" style="left:89%;top:70%">конфликты</div>
-      <div class="n l3" style="left:13%;top:94%">нет ресурса</div>
-      <div class="n l3" style="left:86%;top:94%">потеря вкуса</div>
     </div>
   </div>
 </section>
 
-<!-- 2. REQUESTS -->
-<section style="background:var(--paper)">
+<!-- 2. ЗАПРОСЫ -->
+<section>
+  <div class="orb soft" style="width:520px;height:520px;left:-260px;top:120px;opacity:.5"></div>
   <div class="wrap">
-    <span class="pill">Запросы</span>
+    <div class="label">Запросы</div>
     <h2>С чем к нам приходят</h2>
-    <div class="req" style="margin-top:26px">
-      <div class="req-center"><div class="node core">Ваш запрос</div></div>
-      <div class="req-list">
-        <div class="node">Потолок дохода или масштаба</div>
-        <div class="node">Откладывание решений</div>
-        <div class="node">Бизнес растёт, а качество жизни — нет</div>
-        <div class="node">Страх и стресс в период кризиса</div>
-        <div class="node">Сложно отдыхать, переключаться и отпустить контроль</div>
-        <div class="node">Сложности с системой и делегированием</div>
-        <div class="node">Потеря смысла и вкуса жизни</div>
-        <div class="node">Нехватка энергии и ресурса</div>
-        <div class="node">Расфокус</div>
-        <div class="node">Повторяющиеся конфликты в семье и отношениях</div>
-      </div>
+    <p class="lead">Каждый запрос — точка на карте. На диагностике мы находим, как они связаны между собой.</p>
+    <div class="radar" id="radar">
+      <svg viewBox="0 0 160 100" preserveAspectRatio="none" id="radar-svg"></svg>
+      <div class="rcore">ВАШ<br>ЗАПРОС</div>
     </div>
+    <div class="req-list" id="req-list"></div>
     <div class="ctas"><a class="btn" href="#start">Разобрать мою ситуацию</a></div>
   </div>
 </section>
 
-<!-- 3. MECHANISM -->
-<section>
+<!-- 3. МЕХАНИЗМ -->
+<section class="mech">
+  <div class="orb warm" style="width:600px;height:600px;right:-220px;top:-120px;opacity:.6"></div>
   <div class="wrap">
-    <span class="pill">Механизм</span>
-    <h2>Как внутренние изменения переходят в реальные</h2>
-    <div class="chain">
-      <div class="node accent">Новая реакция</div><div class="arr"></div>
-      <div class="node">Другой выбор</div><div class="arr"></div>
-      <div class="node">Другое поведение</div><div class="arr"></div>
-      <div class="node warm">Другая реальность</div>
+    <div class="label">Механизм</div>
+    <h2>Как внутренние изменения<br>переходят в реальные</h2>
+    <div class="ab">
+      <svg viewBox="0 0 1000 190" preserveAspectRatio="none">
+        <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#4b2dff"/><stop offset="1" stop-color="#ff8a1e"/></linearGradient></defs>
+        <path d="M60 90 C 230 40, 330 120, 380 90 S 560 50, 620 90 S 840 120, 940 80" fill="none" stroke="url(#g1)" stroke-width="1.5"/>
+        <circle cx="60" cy="90" r="7" fill="#4b2dff"/><circle cx="60" cy="90" r="16" fill="#4b2dff" opacity=".15"/>
+        <circle cx="380" cy="90" r="6" fill="#7a5cff"/><circle cx="380" cy="90" r="14" fill="#7a5cff" opacity=".15"/>
+        <circle cx="620" cy="90" r="6" fill="#d77a5a"/><circle cx="620" cy="90" r="14" fill="#d77a5a" opacity=".15"/>
+        <circle cx="940" cy="80" r="8" fill="#ff8a1e"/><circle cx="940" cy="80" r="20" fill="#ff8a1e" opacity=".18"/>
+      </svg>
+      <div class="pt" style="left:6%"><small>A</small>Новая реакция</div>
+      <div class="pt" style="left:38%"><small>→</small>Другой выбор</div>
+      <div class="pt" style="left:62%"><small>→</small>Другое поведение</div>
+      <div class="pt" style="left:94%"><small>B</small>Другая реальность</div>
     </div>
     <div class="two">
-      <div class="node"><p>На сессии мы работаем не только с мыслью о проблеме, а с самим механизмом реакции. Когда он меняется, становится доступен другой, более естественный способ отвечать на ситуацию — без прежнего напряжения, страха или автоматизма.</p></div>
-      <div class="node"><p>Вместе с новой реакцией высвобождается ресурс, который раньше был связан старым сценарием: спокойствие, энергия, интерес, уверенность, способность действовать или занимать другое место в отношениях и бизнесе.</p></div>
+      <p>На сессии мы работаем не только с мыслью о проблеме, а с самим механизмом реакции. Когда он меняется, становится доступен другой, более естественный способ отвечать на ситуацию — без прежнего напряжения, страха или автоматизма.</p>
+      <p>Вместе с новой реакцией высвобождается ресурс, который раньше был связан старым сценарием: спокойствие, энергия, интерес, уверенность, способность действовать или занимать другое место в отношениях и бизнесе.</p>
     </div>
   </div>
 </section>
 
-<!-- 4. ROUTE -->
-<section id="route" style="background:var(--paper)">
+<!-- 4. МАРШРУТ -->
+<section class="dark" id="route">
+  <div class="orb big" style="width:560px;height:560px;right:-200px;top:40px;opacity:.55"></div>
+  <div class="glass" style="width:420px;height:420px;right:60px;top:240px"></div>
   <div class="wrap">
-    <span class="pill">Маршрут</span>
-    <h2>Терапия, которой можно управлять</h2>
-    <div class="tree">
-      <div class="step"><div class="num">1</div><div class="node"><b>Диагностика</b><p>Разбираем ключевые сферы жизни и ваш запрос, чтобы увидеть не только симптом, но и связанные с ним точки.</p></div></div>
-      <div class="step"><div class="num">2</div><div class="node accent"><b>Mindmap и маршрут</b><p>Собираем карту работы: что именно влияет на состояние, решения и поведение.</p></div></div>
-      <div class="step"><div class="num">3</div><div class="node"><b>Подбор специалиста и точечная работа</b><p>Подбираем специалиста под конкретную задачу. Одна сессия — одна фокусная точка работы.</p></div></div>
-      <div class="step"><div class="num">4</div><div class="node warm"><b>Проверка изменений в жизни</b><p>Отслеживаем, как меняется реакция в реальных ситуациях и какой новый ресурс становится доступен.</p></div></div>
+    <div class="label">Маршрут</div>
+    <h2>Терапия, которой<br>можно управлять</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><div><h3>Диагностика</h3><p>Разбираем ключевые сферы жизни и ваш запрос, чтобы увидеть не только симптом, но и связанные с ним точки.</p></div></div>
+      <div class="step"><div class="n">02</div><div><h3>Mindmap и маршрут</h3><p>Собираем карту работы: что именно влияет на состояние, решения и поведение.</p></div></div>
+      <div class="step"><div class="n">03</div><div><h3>Подбор специалиста и точечная работа</h3><p>Подбираем специалиста под конкретную задачу. Одна сессия — одна фокусная точка работы.</p></div></div>
+      <div class="step"><div class="n">04</div><div><h3>Проверка изменений в жизни</h3><p>Отслеживаем, как меняется реакция в реальных ситуациях и какой новый ресурс становится доступен.</p></div></div>
     </div>
-    <p class="big">Вы понимаете, над чем работаете, зачем нужна каждая сессия и где проверять результат.</p>
-    <p class="gsr">Наши специалисты — действующие лицензиары GSR («Глубинная система развития»). Работа направлена на изменение реакции, восстановление естественного ресурса и его проявление в реальной жизни.</p>
+    <p class="statement">Вы понимаете, <em>над чем работаете</em>, зачем нужна каждая сессия и где проверять результат.</p>
+    <div class="gsr"><span class="mono" style="color:var(--orange)">GSR</span><div>Наши специалисты — <b>действующие лицензиары GSR</b> («Глубинная система развития»). Работа направлена на изменение реакции, восстановление естественного ресурса и его проявление в реальной жизни.</div></div>
   </div>
 </section>
 
-<!-- 5. NUMBERS -->
+<!-- 5. ЦИФРЫ -->
 <section>
-  <div class="wrap nums">
-    <div class="node num-card accent"><div class="v">94%</div><p>клиентов отмечают решение запроса уже после 1-й сессии</p><small>*по внутренней статистике Основы</small></div>
-    <div class="node num-card"><div class="v">4+ года</div><p>опыт наших специалистов, которые регулярно повышают квалификацию в работе с разными сферами жизни</p></div>
+  <div class="wrap">
+    <div class="label">Цифры</div>
+    <div class="nums">
+      <div class="num"><div class="v">94%</div><p>клиентов отмечают решение запроса уже после 1-й сессии</p><small>*по внутренней статистике Основы</small></div>
+      <div class="plus">+</div>
+      <div class="num o"><div class="v">4+</div><p>года опыта у наших специалистов, которые регулярно повышают квалификацию в работе с разными сферами жизни</p></div>
+    </div>
   </div>
 </section>
 
-<!-- 6. DIFF -->
-<section style="background:var(--paper)">
+<!-- 6. ОТЛИЧИЯ -->
+<section style="padding-top:20px">
   <div class="wrap">
-    <span class="pill">Отличия</span>
+    <div class="label">Отличия</div>
     <h2>Что отличается в нашей работе</h2>
     <div class="diff">
-      <div class="node"><b>Результат не нужно поддерживать</b><p>Не требуется убеждать себя, контролировать мысли или ежедневно выполнять специальные практики.</p></div>
-      <div class="node"><b>Изменения можно проверить</b><p>Вы видите результат там, где раньше возникала проблема: в решении, разговоре, переговорах, отношениях или стрессовой ситуации.</p></div>
-      <div class="node"><b>Без выпадения из ритма</b><p>Сессия не выбивает из привычного ритма и не требует долгого восстановления после работы.</p></div>
+      <div class="dcard"><div class="c"></div><h3>Результат не нужно поддерживать</h3><p>Не требуется убеждать себя, контролировать мысли или ежедневно выполнять специальные практики.</p></div>
+      <div class="dcard"><div class="c"></div><h3>Изменения можно проверить</h3><p>Вы видите результат там, где раньше возникала проблема: в решении, разговоре, переговорах, отношениях или стрессовой ситуации.</p></div>
+      <div class="dcard"><div class="c"></div><h3>Без выпадения из ритма</h3><p>Сессия не выбивает из привычного ритма и не требует долгого восстановления после работы.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 7. FORMATS -->
-<section>
+<!-- 7. ФОРМАТЫ -->
+<section class="dark formats">
   <div class="wrap">
-    <span class="pill">Форматы</span>
+    <div class="label">Форматы</div>
     <h2>Формат работы</h2>
-    <div class="formats">
-      <div class="root"><div class="node core">Ваша ситуация</div></div>
+    <div class="tree">
+      <svg viewBox="0 0 1000 110" preserveAspectRatio="none">
+        <g fill="none" stroke="rgba(169,156,255,.45)" stroke-width="1">
+          <path d="M500 40 C 500 80, 125 60, 125 110"/><path d="M500 40 C 500 80, 375 70, 375 110"/>
+          <path d="M500 40 C 500 80, 625 70, 625 110"/><path d="M500 40 C 500 80, 875 60, 875 110" stroke="rgba(255,138,30,.55)"/>
+        </g>
+      </svg>
+      <div class="tree-core">Ваша ситуация</div>
       <div class="fgrid">
-        <div class="node fcard accent">
-          <h3>Диагностика</h3>
-          <div class="sub">Понять, что происходит в разных сферах жизни и с чего начать</div>
-          <p>Разбираем видение будущего, состояние, энергию, отношения, деньги, бизнес, решения, смысл. Формируем mindmap терапии: ключевые точки, взаимосвязи и маршрут работы.</p>
-          <div class="price">&nbsp;</div>
-          <a class="btn" href="#start">Записаться на диагностику</a>
-        </div>
-        <div class="node fcard">
-          <h3>Специалист</h3>
-          <div class="sub">Точечная работа с конкретной проблемой</div>
-          <p>Когда запрос понятен: страх, конфликт, откладывание решения, потеря ресурса или повторяющаяся реакция. Специалист работает с механизмом, который поддерживает проблему.</p>
-          <div class="price">12 000 ₽</div>
-          <a class="btn" href="#start">Подобрать специалиста</a>
-        </div>
-        <div class="node fcard">
-          <h3>Ведущий специалист</h3>
-          <div class="sub">Когда важно увидеть проблему шире одного симптома</div>
-          <p>Причинно-следственные связи между сферами жизни, повторяющиеся сценарии и глубокие механизмы, которые проявляются одновременно в бизнесе, отношениях, деньгах и состоянии.</p>
-          <div class="price">22 000 ₽</div>
-          <a class="btn" href="#start">Подобрать специалиста</a>
-        </div>
-        <div class="node fcard warm">
-          <h3>Место и масштаб</h3>
-          <div class="sub">Реализация в социальной среде</div>
-          <p>Перестраиваем взаимодействие с социальными и ранговыми структурами, чтобы ваши ресурсы, компетенции и потенциал реализовывались на более высоком уровне.</p>
-          <div class="price">300 000 ₽</div>
-          <a class="btn" href="#start">Узнать о программе</a>
-        </div>
+        <div class="fcard"><div class="tag">Вход</div><h3>Диагностика</h3><div class="sub">Понять, что происходит в разных сферах жизни и с чего начать</div><p>Разбираем видение будущего, состояние, энергию, отношения, деньги, бизнес, решения, смысл. Формируем mindmap терапии: ключевые точки, взаимосвязи и маршрут работы.</p><div class="price none">стоимость — уточнить</div><a class="btn" href="#start">Записаться на диагностику</a></div>
+        <div class="fcard"><div class="tag">Точечно</div><h3>Специалист</h3><div class="sub">Работа с конкретной проблемой</div><p>Когда запрос понятен: страх, конфликт, откладывание решения, потеря ресурса или повторяющаяся реакция. Специалист работает с механизмом, который поддерживает проблему.</p><div class="price">12 000 ₽</div><a class="btn" href="#start">Подобрать специалиста</a></div>
+        <div class="fcard"><div class="tag">Глубже</div><h3>Ведущий специалист</h3><div class="sub">Когда важно увидеть шире одного симптома</div><p>Причинно-следственные связи между сферами жизни, повторяющиеся сценарии и механизмы, которые проявляются сразу в бизнесе, отношениях, деньгах и состоянии.</p><div class="price">22 000 ₽</div><a class="btn" href="#start">Подобрать специалиста</a></div>
+        <div class="fcard o premium"><div class="tag" style="color:var(--peach)">Программа</div><h3>Место и масштаб</h3><div class="sub">Реализация в социальной среде</div><p>Перестраиваем взаимодействие с социальными и ранговыми структурами, чтобы ваши ресурсы, компетенции и потенциал реализовывались на более высоком уровне.</p><div class="price">300 000 ₽</div><a class="btn light" href="#start">Узнать о программе</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 8. QUIZ -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="node quiz accent">
-      <div>
-        <h2>Не знаете, с чего начать?</h2>
-        <p class="lead">Ответьте на несколько вопросов — они помогут сформулировать запрос и определить подходящее направление работы.</p>
-      </div>
-      <div><a class="btn" href="#start">Сформулировать мой запрос</a></div>
+<!-- 8. КВИЗ -->
+<section>
+  <div class="orb soft" style="width:600px;height:600px;right:-150px;top:-60px;opacity:.55"></div>
+  <div class="wrap quiz">
+    <div>
+      <div class="label">С чего начать</div>
+      <h2>Не знаете, с чего начать?</h2>
+      <p class="lead">Ответьте на несколько вопросов — они помогут сформулировать запрос и определить подходящее направление работы.</p>
+      <div class="ctas"><a class="btn" href="#start">Сформулировать мой запрос</a></div>
+    </div>
+    <div class="cards">
+      <div class="qc"><small>ВОПРОС 01</small>Где сейчас больше всего напряжения?</div>
+      <div class="qc"><small>ВОПРОС 02</small>Что вы откладываете дольше месяца?</div>
+      <div class="qc"><small>ВОПРОС 03</small>Что изменится, если это решится?</div>
     </div>
   </div>
 </section>
 
-<!-- 9. RESULTS -->
-<section style="background:var(--paper)">
+<!-- 9. РЕЗУЛЬТАТЫ -->
+<section class="results">
   <div class="wrap">
-    <span class="pill">Результаты</span>
+    <div class="label">Результаты</div>
     <h2>Результаты в реальной жизни</h2>
     <p class="lead">Что клиенты замечают после работы с запросом:</p>
-    <div class="results">
-      <div class="node">Отзыв клиента — блок пока пустой</div>
-      <div class="node">Отзыв клиента — блок пока пустой</div>
-      <div class="node">Отзыв клиента — блок пока пустой</div>
+    <div class="timeline">
+      <svg viewBox="0 0 1000 150" preserveAspectRatio="none">
+        <defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#4b2dff"/><stop offset="1" stop-color="#ff8a1e"/></linearGradient></defs>
+        <line x1="80" y1="80" x2="920" y2="80" stroke="url(#g2)" stroke-width="1.2"/>
+        <circle cx="80" cy="80" r="6" fill="#4b2dff"/><circle cx="500" cy="80" r="6" fill="#a46aa8"/><circle cx="920" cy="80" r="7" fill="#ff8a1e"/>
+        <circle cx="920" cy="80" r="18" fill="#ff8a1e" opacity=".15"/>
+      </svg>
+      <div class="tl" style="left:8%"><b>1</b><span>после 1-й сессии</span></div>
+      <div class="tl" style="left:50%"><b>30</b><span>через месяц</span></div>
+      <div class="tl o" style="left:92%"><b>90</b><span>через 3 месяца</span></div>
+    </div>
+    <div class="rgrid">
+      <div class="rcard">[ отзыв клиента — нужен текст ]</div>
+      <div class="rcard">[ отзыв клиента — нужен текст ]</div>
+      <div class="rcard">[ отзыв клиента — нужен текст ]</div>
     </div>
   </div>
 </section>
 
-<!-- 10. FINAL -->
-<section id="start">
+<!-- 10. ФИНАЛ -->
+<section class="final dark" id="start">
+  <div class="orb big" style="width:720px;height:720px;right:-180px;top:50%;margin-top:-360px;opacity:.85"></div>
+  <div class="glass" style="width:360px;height:360px;right:380px;top:12%"></div>
   <div class="wrap">
-    <div class="final">
-      <h2>Начните со своей ситуации</h2>
-      <p class="lead">Расскажите, что сейчас вас ограничивает. Поможем понять, с чего лучше начать и какой формат работы подойдёт.</p>
-      <div class="ctas">
-        <a class="btn" href="#start" style="background:#fff;color:var(--ink);border-color:#fff">Разобрать мою ситуацию</a>
-        <a class="btn ghost" href="#start">Telegram</a>
-        <a class="btn ghost" href="#start">Телефон</a>
-      </div>
-      <div class="app">Приложение — в разработке</div>
+    <div class="label">Точка входа</div>
+    <h2>Начните со своей<br>ситуации</h2>
+    <p class="lead">Расскажите, что сейчас вас ограничивает. Поможем понять, с чего лучше начать и какой формат работы подойдёт.</p>
+    <div class="ctas">
+      <a class="btn light" href="#start">Разобрать мою ситуацию</a>
+      <a class="btn ghost" href="#start">Telegram</a>
+      <a class="btn ghost" href="#start">Телефон</a>
     </div>
+    <div class="app">&gt; приложение — в разработке_</div>
   </div>
 </section>
+<footer>ОС.НОВА · ТЕСТОВАЯ ВЕРСИЯ · КНОПКИ ПОКА НИКУДА НЕ ВЕДУТ</footer>
 
-<footer>ОСНОВА · тестовая версия для обсуждения структуры, кнопки пока никуда не ведут</footer>
+<script>
+// запросы: радар-mindmap + список для мобильных
+const REQ=["Потолок дохода или масштаба","Откладывание решений","Бизнес растёт, а качество жизни — нет","Страх и стресс в период кризиса","Сложно отдыхать и отпустить контроль","Сложности с системой и делегированием","Потеря смысла и вкуса жизни","Нехватка энергии и ресурса","Расфокус","Повторяющиеся конфликты в семье и отношениях"];
+(function(){
+  const r=document.getElementById('radar'),svg=document.getElementById('radar-svg'),list=document.getElementById('req-list');
+  let s='';
+  [14,26,38,48].forEach((rr,i)=>s+=`<ellipse class="ring" cx="80" cy="50" rx="${rr*1.6}" ry="${rr}" ${i%2?'stroke-dasharray="1 1.5"':''}/>`);
+  REQ.forEach((t,i)=>{
+    const a=-Math.PI/2+i*2*Math.PI/REQ.length, rr=i%2?38:46;
+    const x=80+Math.cos(a)*rr*1.6, y=50+Math.sin(a)*rr;
+    s+=`<line class="spoke" x1="80" y1="50" x2="${x}" y2="${y}"/>`;
+    const d=document.createElement('div'); d.className='rnode'+(i%3==2?' o':''); d.textContent=t;
+    d.style.left=(x/160*100)+'%'; d.style.top=(y/100*100)+'%'; r.appendChild(d);
+    const li=document.createElement('div'); li.textContent=t; list.appendChild(li);
+  });
+  svg.innerHTML=s;
+})();
+
+const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const mouse={x:-9999,y:-9999,nx:0,ny:0};
+addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;mouse.nx=e.clientX/innerWidth-.5;mouse.ny=e.clientY/innerHeight-.5});
+
+// свечение за курсором
+(function(){
+  if(still||matchMedia('(hover:none)').matches) return;
+  const g=document.createElement('div');g.id='glow';document.body.appendChild(g);
+  let gx=innerWidth/2,gy=innerHeight/2;
+  addEventListener('mousemove',()=>g.style.opacity=1,{once:true});
+  (function loop(){gx+=(mouse.x-gx)*.12;gy+=(mouse.y-gy)*.12;g.style.transform=`translate3d(${gx}px,${gy}px,0)`;requestAnimationFrame(loop)})();
+})();
+
+// параллакс сфер: от мыши и от прокрутки
+(function(){
+  if(still) return;
+  const els=[...document.querySelectorAll('.orb:not(.hero-orb .orb),.glass,.hero-orb')].map((el,i)=>({el,d:(i%3+1)*14}));
+  let sx=0,sy=0;
+  (function loop(){
+    sx+=(mouse.nx-sx)*.06; sy+=(mouse.ny-sy)*.06;
+    for(const o of els){
+      const r=o.el.parentElement.getBoundingClientRect();
+      if(r.bottom<0||r.top>innerHeight) continue;
+      const sc=(r.top+r.height/2-innerHeight/2)*-.06*(o.d/14);
+      o.el.style.translate=`${-sx*o.d*2}px ${-sy*o.d*2+sc}px`;
+    }
+    requestAnimationFrame(loop);
+  })();
+})();
+
+// проявление блоков при прокрутке
+(function(){
+  const sel='h2,.lead,.label,.adv div,.step,.statement,.gsr,.num,.dcard,.fcard,.two p,.rcard,.req-list div,.ab,.timeline';
+  const items=document.querySelectorAll(sel);
+  if(still||!('IntersectionObserver' in window)) return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  items.forEach(el=>{
+    const sib=[...el.parentElement.children].filter(s=>s.matches(sel));
+    el.style.transitionDelay=Math.min(sib.indexOf(el),5)*80+'ms';
+    el.classList.add('reveal');io.observe(el);
+  });
+})();
+
+// счётчики 94% и 4+
+(function(){
+  const vs=document.querySelectorAll('.num .v');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting) return; io.unobserve(e.target);
+    const el=e.target,txt=el.textContent,n=parseInt(txt),suf=txt.replace(/^\d+/,'');
+    if(still) return; const t0=performance.now();
+    (function tick(t){const p=Math.min((t-t0)/1400,1),v=Math.round(n*(1-Math.pow(1-p,3)));el.textContent=v+suf;if(p<1)requestAnimationFrame(tick)})(t0);
+  }),{threshold:.5});
+  vs.forEach(v=>io.observe(v));
+})();
+
+// «магнитные» кнопки
+(function(){
+  if(still||matchMedia('(hover:none)').matches) return;
+  document.querySelectorAll('.btn').forEach(b=>{
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.3}px)`});
+    b.addEventListener('mouseleave',()=>b.style.transform='');
+  });
+})();
+
+// волна частиц в первом экране, расступается от курсора
+(function(){
+  const c=document.getElementById('wave'),x=c.getContext('2d');
+  let w,h,dpr; function size(){dpr=Math.min(devicePixelRatio||1,2);w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+  size(); addEventListener('resize',size);
+  const N=innerWidth<620?90:180, L=7;
+  let visible=true;
+  new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(c);
+  function frame(t){
+    if(!visible){requestAnimationFrame(frame);return}
+    x.clearRect(0,0,w,h); t=t/1000;
+    const cr=c.getBoundingClientRect(),mx=mouse.x-cr.left,my=mouse.y-cr.top;
+    for(let l=0;l<L;l++){
+      for(let i=0;i<N;i++){
+        const p=i/N; let X=p*w;
+        let Y=h*.55+Math.sin(p*6+t*.6+l*.35)*h*.16*Math.sin(p*3.1+.4)+Math.sin(p*13+t+l)*6+(l-L/2)*7;
+        const dx=X-mx,dy=Y-my,dd=dx*dx+dy*dy;
+        if(dd<16000){const f=(1-dd/16000)*38/Math.sqrt(dd+1);X+=dx*f;Y+=dy*f}
+        const r=Math.round(75+(255-75)*p), g=Math.round(45+(138-45)*p), b=Math.round(255+(30-255)*p);
+        const a=.35+.6*Math.sin(Math.PI*p)*(1-Math.abs(l-L/2)/L);
+        x.fillStyle=`rgba(${r},${g},${b},${a})`; x.beginPath(); x.arc(X,Y,1.3+1.1*Math.sin(Math.PI*p),0,6.28); x.fill();
+      }
+    }
+    if(!still) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
